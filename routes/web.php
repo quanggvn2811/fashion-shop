@@ -12,7 +12,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Admin shop - server side
+Route::group(['namespace'=>'Admin'], function(){
+	Route::group(['prefix'=>'admin'], function(){
+	Route::get('/', 'AdminController@getDashboard');
+});
+});
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+
+// Default route
+Route::fallback(function(){
+	return view('welcome');
 });
