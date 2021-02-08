@@ -15,7 +15,12 @@ use Illuminate\Support\Facades\Route;
 // Admin shop - server side
 Route::group(['namespace'=>'Admin'], function(){
 	Route::group(['prefix'=>'admin'], function(){
-	Route::get('/', 'AdminController@getDashboard');
+	Route::get('/dashboard', 'AdminController@getDashboard');\
+
+	// Login
+	Route::get('/login', 'AdminController@getLogin');
+	Route::post('/login', 'AdminController@postLogin');
+
 });
 });
 

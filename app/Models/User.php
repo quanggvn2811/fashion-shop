@@ -16,8 +16,9 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'tbl_fs_users';
+    
     protected $fillable = [
-        'name',
         'email',
         'password',
     ];
