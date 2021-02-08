@@ -33,4 +33,11 @@ class AdminController extends Controller
     	}
 
     }
+
+    // Log out
+    public function getLogout(){
+        Auth::logout();
+        return redirect()->intended('/admin/login');
+    }
 }
+    

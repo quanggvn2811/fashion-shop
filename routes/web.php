@@ -1,6 +1,6 @@
-<?php
+ 	<?php
 
-use Illuminate\Support\Facades\Route;
+ 	use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +14,22 @@ use Illuminate\Support\Facades\Route;
 */
 // Admin shop - server side
 Route::group(['namespace'=>'Admin'], function(){
-	Route::group(['prefix'=>'admin'], function(){
-	Route::get('/dashboard', 'AdminController@getDashboard');\
+	Route::group(['prefix'=>'admin', 'middleware'=>'checkLoggedIn'], function(){
+		// Login
+		Route::get('/login', 'AdminController@getLogin');
+		Route::post('/login', 'AdminController@postLogin');
 
-	// Login
-	Route::get('/login', 'AdminController@getLogin');
-	Route::post('/login', 'AdminController@postLogin');
+	});
+	Route::group(['prefix'=>'admin', 'middleware'=>'checkLoggedOut'], function(){
+		Route::get('/dashboard', 'AdminController@getDashboard');
 
-});
+		// Log out
+		Route::get('/logout', 'AdminController@getLogout');
+
+
+	});
+
+
 });
 
 
