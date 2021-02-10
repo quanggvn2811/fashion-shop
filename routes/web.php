@@ -1,7 +1,6 @@
  	<?php
 
  	use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +25,8 @@ Route::group(['namespace'=>'Admin'], function(){
 		// Log out
 		Route::get('/logout', 'AdminController@getLogout');
 
-
+		// Categories
+		Route::resource('category', CategoryController::class);
 	});
 
 

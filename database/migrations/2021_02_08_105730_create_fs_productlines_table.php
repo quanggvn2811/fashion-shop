@@ -16,7 +16,7 @@ class CreateFsProductlinesTable extends Migration
         Schema::create('tbl_fs_productlines', function (Blueprint $table) {
             $table->increments('prodline_id');
             $table->string('name')->unique();
-            $table->string('desciption');
+            $table->string('description');
             $table->string('parent');
             $table->tinyInteger('display');
             $table->timestamps();

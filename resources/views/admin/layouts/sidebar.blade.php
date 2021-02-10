@@ -13,20 +13,23 @@
 
                     <li class="sub-menu">
                         <a href="javascript:;">
-                            <i class="fa fa-book"></i>
-                            <span>UI Elements</span>
+                            <i class="fa fa-list-alt"></i>
+                            <span>Danh mục</span>
                         </a>
                         <ul class="sub">
-                          <li><a href="typography.html">Typography</a></li>
-                          <li><a href="glyphicon.html">glyphicon</a></li>
-                          <li><a href="grids.html">Grids</a></li>
+                          <li><a href="{{URL::to('/admin/category')}}">Danh sách danh mục</a></li>
+                          <li><a href="{{URL::to('/admin/category/create')}}">Thêm danh mục</a></li>
                       </ul>
                   </li>
                   <li>
                     <a href="fontawesome.html">
-                        <i class="fa fa-bullhorn"></i>
-                        <span>Font awesome </span>
+                        <i class="fa fa-product-hunt"></i>
+                        <span>Sản phẩm</span>
                     </a>
+                    <ul class="sub">
+                          <li><a href="{{URL::to('/admin/product')}}">Danh sách sản phẩm</a></li>
+                          <li><a href="{{URL::to('/admin/product/create')}}">Thêm sản phẩm</a></li>
+                      </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">

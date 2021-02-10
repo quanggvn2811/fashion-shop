@@ -1,37 +1,35 @@
   @extends('admin.master')
   @section('title', 'E-SHOPPE | Dashboard')
   @section('content')
-    <section id="main-content">
-     <section class="wrapper">
-      <!-- //market-->
-      <div class="market-updates">
-       <div class="col-md-3 market-update-gd">
-        <div class="market-update-block clr-block-2">
-         <div class="col-md-4 market-update-right">
-          <i class="fa fa-eye"> </i>
-        </div>
-        <div class="col-md-8 market-update-left">
-          <h4>Visitors</h4>
-          <h3>13,500</h3>
-          <p>Other hand, we denounce</p>
-        </div>
-        <div class="clearfix"> </div>
-      </div>
+  <!-- //market-->
+  <div class="market-updates">
+   <div class="col-md-3 market-update-gd">
+    <div class="market-update-block clr-block-2">
+     <div class="col-md-4 market-update-right">
+      <i class="fa fa-eye"> </i>
     </div>
-    <div class="col-md-3 market-update-gd">
-      <div class="market-update-block clr-block-1">
-       <div class="col-md-4 market-update-right">
-        <i class="fa fa-users" ></i>
-      </div>
-      <div class="col-md-8 market-update-left">
-       <h4>Users</h4>
-       <h3>1,250</h3>
-       <p>Other hand, we denounce</p>
-     </div>
-     <div class="clearfix"> </div>
-   </div>
+    <div class="col-md-8 market-update-left">
+      <h4>Visitors</h4>
+      <h3>13,500</h3>
+      <p>Other hand, we denounce</p>
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-1">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-users" ></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+   <h4>Users</h4>
+   <h3>1,250</h3>
+   <p>Other hand, we denounce</p>
  </div>
- <div class="col-md-3 market-update-gd">
+ <div class="clearfix"> </div>
+</div>
+</div>
+<div class="col-md-3 market-update-gd">
   <div class="market-update-block clr-block-3">
    <div class="col-md-4 market-update-right">
     <i class="fa fa-usd"></i>
@@ -373,13 +371,4 @@
 </div>
 <div class="clearfix"> </div>
 </div>
-</section>
-<!-- footer -->
-<div class="footer">
- <div class="wthree-copyright">
-   <p>© 2017 Visitors. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
- </div>
-</div>
-<!-- / footer -->
-</section>
 @endsection

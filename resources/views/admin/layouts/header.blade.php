@@ -26,6 +26,10 @@
     <script src="js/jquery2.0.3.min.js"></script>
     <script src="js/raphael-min.js"></script>
     <script src="js/morris.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </head>
 <body>
     <section id="container">
@@ -34,9 +38,9 @@
             <!--logo start-->
             <div class="brand">
                 <a href="index.html" class="logo">
-                   E-SHOPPE
-               </a>
-               <div class="sidebar-toggle-box">
+                 E-SHOPPE
+             </a>
+             <div class="sidebar-toggle-box">
                 <div class="fa fa-bars"></div>
             </div>
         </div>
