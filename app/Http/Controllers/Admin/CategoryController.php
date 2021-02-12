@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\AddCategoryRequest;
+use App\Http\Requests\Admin\EditCategoryRequest;
 use DB;
 
 class CategoryController extends Controller
@@ -76,7 +77,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $data['catelist'] = Category::all();
+        $data['cate'] = $category;
+        return view('admin.categories.edit', $data);
     }
 
     /**
@@ -86,9 +89,22 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(EditCategoryRequest $request, Category $category)
     {
-        //
+        $name = test_input($request->name);
+        $desc = test_input($request->desc);
+        $parent = $request->cateParent;
+        $display = 1;
+        if (!$request->display) {
+            $display = 0;
+        }
+        $category->name = $name;
+        $category->description = $desc;
+        $category->parent = $parent;
+        $category->display = $display;
+
+        $category->save();
+        return redirect()->intended('admin/category');
     }
 
     /**

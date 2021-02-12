@@ -1,4 +1,5 @@
 @extends('admin.master')
+@section('title', 'E-SHOPPE | List of categories')
 @section('content')
 <div class="table-agile-info">
 	<div class="panel panel-default">
@@ -24,17 +25,17 @@
 					@foreach($catelist as $cate)
 					<tr>
 						<td>{{$cate->prodline_id}}</td>
-						<td>{{$cate->name}}</td>
+						<td><a href="{{URL::to('/admin/category/'. $cate->prodline_id . '/edit')}}">{{$cate->name}}</a></td>
 						<td><span class="text-ellipsis">{{$cate->description}}</span></td>
 						{{-- <?php $parent = \App\Models\Category::find($cate->parent); ?> --}}
 						{{-- <td><span class="text-ellipsis">{{$cate->getParentsNames($cate->parent)}}</span></td> --}}
 						<td onclick="changeDisplayCate({{$cate->prodline_id}}, {{$cate->display}})"><input id="display" name="display" type="checkbox" @if($cate->display == 1) checked @endif data-toggle="toggle" data-onstyle="success"></td>
 						<td><span id="date">{{substr($cate->updated_at, 0, -9)}}</span></td>
 						<td>
-							<a href="{{URL::to('/admin//category/edit')}}">
+							<a href="{{URL::to('/admin/category/'. $cate->prodline_id . '/edit')}}">
 								<i class="fa fa-check text-success text-active"></i>
 							</a>
-							<a href="{{URL::to('/admin//category/id/delete')}}" onclick="confirm('Delete this category?')">
+							<a href="{{URL::to('/admin/category/id/delete')}}" onclick="confirm('Delete this category?')">
 								<i class="fa fa-times text-danger text"></i>
 							</a>
 						</td>
