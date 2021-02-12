@@ -27,9 +27,8 @@ Route::group(['namespace'=>'Admin'], function(){
 
 		// Categories
 		Route::resource('category', CategoryController::class);
+		Route::get('cate/display', 'CategoryController@changeDisplayCate');
 	});
-
-
 });
 
 
@@ -38,4 +37,4 @@ Route::group(['namespace'=>'Admin'], function(){
 // Default route
 Route::fallback(function(){
 	return view('welcome');
-});
+});	

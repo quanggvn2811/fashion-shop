@@ -101,4 +101,18 @@ class CategoryController extends Controller
     {
         //
     }
+
+    public function changeDisplayCate(Request $request){
+        $cate_id = $request->cate_id;
+        $display_st = $request->display_st;
+        $cate = Category::find($cate_id);
+        if ($display_st) {
+            $cate->display = 0;
+            echo "false";
+        } else {
+            $cate->display = 1;
+            echo "true";
+        }
+        $cate->save();
+    }
 }
