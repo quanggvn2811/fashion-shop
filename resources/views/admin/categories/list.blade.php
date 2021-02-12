@@ -28,8 +28,8 @@
 						<td><span class="text-ellipsis">{{$cate->description}}</span></td>
 						{{-- <?php $parent = \App\Models\Category::find($cate->parent); ?> --}}
 						{{-- <td><span class="text-ellipsis">{{$cate->getParentsNames($cate->parent)}}</span></td> --}}
-						<td><input name="display" type="checkbox" @if($cate->display == 1) checked @endif data-toggle="toggle" data-onstyle="success"></td>
-						<td><span>{{substr($cate->updated_at, 0, -9)}}</span></td>
+						<td onclick="changeDisplayCate({{$cate->prodline_id}}, {{$cate->display}})"><input id="display" name="display" type="checkbox" @if($cate->display == 1) checked @endif data-toggle="toggle" data-onstyle="success"></td>
+						<td><span id="date">{{substr($cate->updated_at, 0, -9)}}</span></td>
 						<td>
 							<a href="{{URL::to('/admin//category/edit')}}">
 								<i class="fa fa-check text-success text-active"></i>
@@ -47,7 +47,7 @@
 			<div class="row">
 
 				<div class="col-sm-5 text-center">
-					<small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+					<small class="text-muted inline m-t-sm m-b-sm">showing {{$catelist->currentPage()*$catelist->perPage()-$catelist->perPage() + 1}}-{{$catelist->currentPage()*$catelist->perPage()}} of {{$catelist->total()}} items</small>
 				</div>
 				<div class="col-sm-7 text-right text-center-xs">                
 					<ul class="pagination pagination-sm m-t-none m-b-none">
@@ -61,6 +61,23 @@
 			</div>
 		</footer>
 	</div>
-</div>
+</div>			
+<script>
+	function changeDisplayCate(cate_id, display_st){
+	const request =	$.get(
+			"{{asset('admin/cate/display')}}",
+			{
+				cate_id: cate_id,
+				display_st: display_st
+			});
+		request.done(function(responseText, statusText, xhr){
+			if (statusText == 'error') {
+				alert('Error: ' + xhr.status + ':' + xhr.statusText);
+			} else {
+				document.getElementById('display').checked = responseText;
+			}
+		});
+	}
+</script>
 
 @endsection
