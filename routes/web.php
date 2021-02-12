@@ -26,8 +26,9 @@ Route::group(['namespace'=>'Admin'], function(){
 		Route::get('/logout', 'AdminController@getLogout');
 
 		// Categories
+		Route::get('category/display', 'CategoryController@changeDisplayCate');
 		Route::resource('category', CategoryController::class);
-		Route::get('cate/display', 'CategoryController@changeDisplayCate');
+		
 	});
 });
 

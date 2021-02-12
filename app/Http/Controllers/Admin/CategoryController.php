@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data['catelist'] = Category::paginate(2);
+        $data['catelist'] = Category::orderBy('prodline_id', 'DESC')->paginate(3);
         return view('admin.categories.list', $data);
     }
 
@@ -115,7 +115,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return back()->with('delCateSuccess', 'Delete category successfully');
     }
 
     public function changeDisplayCate(Request $request){

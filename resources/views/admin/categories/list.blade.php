@@ -7,6 +7,7 @@
 			list of categories
 		</div>
 		<div class="table-responsive">
+			@include('errors.note')
 			<table class="table table-striped b-t b-light">
 				<thead>
 					<tr>
@@ -18,7 +19,7 @@
 						{{-- <th>Category parent</th> --}}
 						<th>Display</th>
 						<th>Last updated</th>
-						<th style="width:30px;"></th>
+						<th style="width:30px;">Option</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -35,9 +36,11 @@
 							<a href="{{URL::to('/admin/category/'. $cate->prodline_id . '/edit')}}">
 								<i class="fa fa-check text-success text-active"></i>
 							</a>
-							<a href="{{URL::to('/admin/category/id/delete')}}" onclick="confirm('Delete this category?')">
-								<i class="fa fa-times text-danger text"></i>
-							</a>
+							<form id="formDel{{$cate->prodline_id}}" action="{{URL::to('admin/category/'.$cate->prodline_id)}}" method="post">
+								@method('DELETE')
+								@csrf
+								<i onclick="if(confirm('Delete this category?')){document.getElementById('formDel{{$cate->prodline_id}}').submit()} else {return false;};" class="fa fa-times text-danger text"></i>
+							</form>
 						</td>
 					</tr>
 					@endforeach
@@ -66,7 +69,7 @@
 <script>
 	function changeDisplayCate(cate_id, display_st){
 	const request =	$.get(
-			"{{asset('admin/cate/display')}}",
+			"{{asset('admin/category/display')}}",
 			{
 				cate_id: cate_id,
 				display_st: display_st
