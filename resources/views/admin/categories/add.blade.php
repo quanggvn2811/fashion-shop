@@ -25,11 +25,9 @@
 								<label>Danh mục cha</label>
 								<select name="cateParent" id="" class="form-control">
 									<option value="0">[None]</option>
-									<option value="1">IPhone</option>
-									<option value="2">Samsung</option>
-									<option value="3">LG</option>
-									<option value="4">BPhone</option>
-									<option value="5">HTC</option>
+									@foreach($catelist as $cate)
+									<option value="{{$cate->prodline_id}}">{{$cate->name}}</option>
+									@endforeach
 								</select>
 							</div>
 							<div class="checkbox">
