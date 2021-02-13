@@ -7,7 +7,8 @@
 			list of brands
 		</div>
 		<div class="table-responsive">
-			@include('errors.note')
+			@include('success.note')
+
 			<table class="table table-striped b-t b-light">
 				<thead>
 					<tr>
