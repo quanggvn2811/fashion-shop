@@ -109,6 +109,7 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+        return back()->with('delBrandSuccess', 'Delete brand successfully');
     }
 }
