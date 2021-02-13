@@ -112,4 +112,16 @@ class BrandController extends Controller
         $brand->delete();
         return back()->with('delBrandSuccess', 'Delete brand successfully');
     }
+    public function changeDisplayBrand(Request $request){
+        $brand_id = $request->brand_id;
+        $display = $request->display_st;
+        if ($display) {
+            $display = 0;
+        } else {
+            $display = 1;
+        }
+        $brand = Brand::find($brand_id);
+        $brand->display = $display;
+        $brand->save();
+    }
 }

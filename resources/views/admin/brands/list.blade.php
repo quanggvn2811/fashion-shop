@@ -31,7 +31,7 @@
 						<td><span class="text-ellipsis">{{$br->description}}</span></td>
 						{{-- <?php $parent = \App\Models\Category::find($cate->parent); ?> --}}
 						{{-- <td><span class="text-ellipsis">{{$cate->getParentsNames($cate->parent)}}</span></td> --}}
-						<td onclick="changeDisplayCate({{$br->brand_id}}, {{$br->display}})"><input id="display" name="display" type="checkbox" @if($br->display == 1) checked @endif data-toggle="toggle" data-onstyle="success"></td>
+						<td onclick="changeDisplayBrand({{$br->brand_id}}, {{$br->display}})"><input id="display" name="display" type="checkbox" @if($br->display == 1) checked @endif data-toggle="toggle" data-onstyle="success"></td>
 						<td><span id="date">{{substr($br->updated_at, 0, -9)}}</span></td>
 						<td>
 							<a href="{{URL::to('/admin/brands/'. $br->brand_id . '/edit')}}">
@@ -68,20 +68,20 @@
 	</div>
 </div>			
 <script>
-	function changeDisplayCate(cate_id, display_st){
+	function changeDisplayBrand(brand_id, display_st){
 	const request =	$.get(
-			"{{asset('admin/category/display')}}",
+			"{{asset('admin/brands/display')}}",
 			{
-				cate_id: cate_id,
+				brand_id: brand_id,
 				display_st: display_st
 			});
-		request.done(function(responseText, statusText, xhr){
-			if (statusText == 'error') {
-				alert('Error: ' + xhr.status + ':' + xhr.statusText);
-			} else {
-				document.getElementById('display').checked = responseText;
-			}
-		});
+		// request.done(function(responseText, statusText, xhr){
+		// 	if (statusText == 'error') {
+		// 		alert('Error: ' + xhr.status + ':' + xhr.statusText);
+		// 	} else {
+		// 		document.getElementById('display').checked = responseText;
+		// 	}
+		// });
 	}
 </script>
 

@@ -30,6 +30,7 @@ Route::group(['namespace'=>'Admin'], function(){
 		Route::resource('category', CategoryController::class);
 
 		// Brands
+		Route::get('brands/display', 'BrandController@changeDisplayBrand');
 		Route::resource('brands', BrandController::class);
 	});
 });
