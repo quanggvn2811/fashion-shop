@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\AddBrandRequest;
+use App\Http\Requests\Admin\EditBrandRequest;
 
 class BrandController extends Controller
 {
@@ -73,7 +74,8 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        $data['brand'] = $brand;
+        return view('admin.brands.edit', $data);
     }
 
     /**
@@ -83,9 +85,20 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(EditBrandRequest $request, Brand $brand)
     {
-        //
+        $name = test_input($request->name);
+        $desc = test_input($request->description);
+        $display = 1;
+        if (!$request->display) {
+            $display = 0;
+        }
+        $brand->name = $name;
+        $brand->description = $desc;
+        $brand->display = $display;
+
+        $brand->save();
+        return redirect()->intended('admin/brands');
     }
 
     /**

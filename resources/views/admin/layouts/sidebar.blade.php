@@ -22,7 +22,7 @@
                   </li>
                       <li class="sub-menu">
                         <a href="javascript:;">
-                            <i class="fa fa-list-alt"></i>
+                           <i class="fa fa-font-awesome"></i>
                             <span>Brands</span>
                         </a>
                         <ul class="sub">
