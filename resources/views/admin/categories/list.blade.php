@@ -1,4 +1,5 @@
 @extends('admin.master')
+@section('title', 'E-SHOPPE | List of categories')
 @section('content')
 <div class="table-agile-info">
 	<div class="panel panel-default">
@@ -6,6 +7,7 @@
 			list of categories
 		</div>
 		<div class="table-responsive">
+			@include('errors.note')
 			<table class="table table-striped b-t b-light">
 				<thead>
 					<tr>
@@ -17,26 +19,28 @@
 						{{-- <th>Category parent</th> --}}
 						<th>Display</th>
 						<th>Last updated</th>
-						<th style="width:30px;"></th>
+						<th style="width:30px;">Option</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach($catelist as $cate)
 					<tr>
 						<td>{{$cate->prodline_id}}</td>
-						<td>{{$cate->name}}</td>
+						<td><a href="{{URL::to('/admin/category/'. $cate->prodline_id . '/edit')}}">{{$cate->name}}</a></td>
 						<td><span class="text-ellipsis">{{$cate->description}}</span></td>
 						{{-- <?php $parent = \App\Models\Category::find($cate->parent); ?> --}}
 						{{-- <td><span class="text-ellipsis">{{$cate->getParentsNames($cate->parent)}}</span></td> --}}
 						<td onclick="changeDisplayCate({{$cate->prodline_id}}, {{$cate->display}})"><input id="display" name="display" type="checkbox" @if($cate->display == 1) checked @endif data-toggle="toggle" data-onstyle="success"></td>
 						<td><span id="date">{{substr($cate->updated_at, 0, -9)}}</span></td>
 						<td>
-							<a href="{{URL::to('/admin//category/edit')}}">
+							<a href="{{URL::to('/admin/category/'. $cate->prodline_id . '/edit')}}">
 								<i class="fa fa-check text-success text-active"></i>
 							</a>
-							<a href="{{URL::to('/admin//category/id/delete')}}" onclick="confirm('Delete this category?')">
-								<i class="fa fa-times text-danger text"></i>
-							</a>
+							<form id="formDel{{$cate->prodline_id}}" action="{{URL::to('admin/category/'.$cate->prodline_id)}}" method="post">
+								@method('DELETE')
+								@csrf
+								<i onclick="if(confirm('Delete this category?')){document.getElementById('formDel{{$cate->prodline_id}}').submit()} else {return false;};" class="fa fa-times text-danger text"></i>
+							</form>
 						</td>
 					</tr>
 					@endforeach
@@ -47,7 +51,7 @@
 			<div class="row">
 
 				<div class="col-sm-5 text-center">
-					<small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+					<small class="text-muted inline m-t-sm m-b-sm">showing {{$catelist->currentPage()*$catelist->perPage()-$catelist->perPage() + 1}}-{{$catelist->currentPage()*$catelist->perPage()}} of {{$catelist->total()}} items</small>
 				</div>
 				<div class="col-sm-7 text-right text-center-xs">                
 					<ul class="pagination pagination-sm m-t-none m-b-none">
@@ -65,7 +69,7 @@
 <script>
 	function changeDisplayCate(cate_id, display_st){
 	const request =	$.get(
-			"{{asset('admin/cate/display')}}",
+			"{{asset('admin/category/display')}}",
 			{
 				cate_id: cate_id,
 				display_st: display_st

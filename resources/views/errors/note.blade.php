@@ -5,3 +5,7 @@
 @foreach($errors->all() as $err)
 <p class="alert alert-danger">{{$err}}</p>
 @endforeach
+
+@if(Session::has('delCateSuccess'))
+<p class="alert alert-danger">{{Session::get('delCateSuccess')}}</p>
+@endif
