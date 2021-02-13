@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditCategoryRequest extends FormRequest
+class AddBrandRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,14 +23,14 @@ class EditCategoryRequest extends FormRequest
      */
     public function rules()
     {
-       return [
-        'name'=>['required', 'unique:tbl_fs_productlines,name,'.$this->segment(3).',prodline_id', 'string', 'max:255', 'regex:/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/'],
-        'desc'=>['max:255'],
-    ];
-}
-public function messages(){
-    return [
-        'name.unique'=>'Category name are duplicated',
-    ];
-}
+        return [
+            'name'=>['required', 'string', 'max:255', 'unique:tbl_fs_brands,name', 'regex:/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/'],
+            'description'=>['max:255'],
+        ];
+    }
+    public function messages(){
+        return [
+            'name.unique'=>'Brand name are duplicated',
+        ];
+    }
 }

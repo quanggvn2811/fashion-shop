@@ -14,11 +14,20 @@
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-list-alt"></i>
-                            <span>Danh mục</span>
+                            <span>Categories
+                        <ul class="sub">
+                          <li><a href="{{URL::to('/admin/category')}}">List of categories</a></li>
+                          <li><a href="{{URL::to('/admin/category/create')}}">Add category</a></li>
+                      </ul>
+                  </li>
+                      <li class="sub-menu">
+                        <a href="javascript:;">
+                            <i class="fa fa-list-alt"></i>
+                            <span>Brands</span>
                         </a>
                         <ul class="sub">
-                          <li><a href="{{URL::to('/admin/category')}}">Danh sách danh mục</a></li>
-                          <li><a href="{{URL::to('/admin/category/create')}}">Thêm danh mục</a></li>
+                          <li><a href="{{URL::to('/admin/brands')}}">List of brands</a></li>
+                          <li><a href="{{URL::to('/admin/brands/create')}}">Add brand</a></li>
                       </ul>
                   </li>
                   <li>

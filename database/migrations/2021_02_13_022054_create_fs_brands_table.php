@@ -17,7 +17,6 @@ class CreateFsBrandsTable extends Migration
             $table->increments('brand_id');
             $table->string('name');
             $table->string('description');
-            $table->integer('band_parent');
             $table->tinyInteger('display');
             $table->timestamps();
         });

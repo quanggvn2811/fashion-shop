@@ -28,6 +28,9 @@ Route::group(['namespace'=>'Admin'], function(){
 		// Categories
 		Route::get('category/display', 'CategoryController@changeDisplayCate');
 		Route::resource('category', CategoryController::class);
+
+		// Brands
+		Route::resource('brands', BrandController::class);
 		
 	});
 });

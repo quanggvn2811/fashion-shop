@@ -25,12 +25,12 @@ class AddCategoryRequest extends FormRequest
     {
         return [
             'name'=>['required', 'unique:tbl_fs_productlines,name', 'string', 'max:255', 'regex:/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/'],
+            'desc'=>['max:255'],
         ];
     }
     public function messages() {
         return [
-            'name.regex'=>'Tên danh mục không hợp lệ',
-            'name.unique'=>'Tên danh mục đã tồn tại',
+            'name.unique'=>'Category name are duplicated',
         ];
     }
 }
