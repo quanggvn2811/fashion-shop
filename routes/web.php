@@ -40,5 +40,5 @@ Route::group(['namespace'=>'Admin'], function(){
 
 // Default route
 Route::fallback(function(){
-	return view('welcome');
+	return view('shop.master');
 });	
