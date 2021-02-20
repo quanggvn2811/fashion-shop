@@ -4,7 +4,7 @@
 <div class="table-agile-info">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			Responsive Table
+			List of products
 		</div>
 		<div class="row w3-res-tb">
 			<div class="col-sm-5 m-b-xs">
@@ -36,102 +36,45 @@
 								<input type="checkbox"><i></i>
 							</label>
 						</th>
-						<th>Project</th>
-						<th>Task</th>
-						<th>Date</th>
+						<th>Name</th>
+						<th>Image</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th>Display</th>
 						<th style="width:30px;"></th>
 					</tr>
 				</thead>
 				<tbody>
+					@foreach($productlist as $prod)
 					<tr>
 						<td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-						<td>Idrawfast prototype design prototype design prototype design prototype design prototype design</td>
-						<td><span class="text-ellipsis">{item.PrHelpText1}</span></td>
-						<td><span class="text-ellipsis">{item.PrHelpText1}</span></td>
+						<td><a href="">{{$prod->name}}</a></td>
+						<?php $img = json_decode($prod->images); ?>
+						<td><a href=""><img style="max-width: 200px; max-height: 200px;" src="{{url('storage/avatars/' . $img[0])}}" alt=""></a></td>
+						<td><span class="text-ellipsis">{{number_format($prod->price)}}</span></td>
+						<td><span class="text-ellipsis">{{number_format($prod->quantity)}}</span></td>
+						<td><input type="checkbox" @if($prod->display) checked="" @endif data-toggle="toggle" data-onstyle="success" name=""></td>
 						<td>
 							<a href="" class="active" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
 						</td>
 					</tr>
-					<tr>
-						<td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-						<td>Formasa</td>
-						<td>8c</td>
-						<td>Jul 22, 2013</td>
-						<td>
-							<a href="" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
-						</td>
-					</tr>
-					<tr>
-						<td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-						<td>Avatar system</td>
-						<td>15c</td>
-						<td>Jul 15, 2013</td>
-						<td>
-							<a href="" class="active" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
-						</td>
-					</tr>
-					<tr>
-						<td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-						<td>Throwdown</td>
-						<td>4c</td>
-						<td>Jul 11, 2013</td>
-						<td>
-							<a href="" class="active" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
-						</td>
-					</tr>
-					<tr>
-						<td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-						<td>Idrawfast</td>
-						<td>4c</td>
-						<td>Jul 7, 2013</td>
-						<td>
-							<a href="" class="active" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
-						</td>
-					</tr>
-					<tr>
-						<td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-						<td>Formasa</td>
-						<td>8c</td>
-						<td>Jul 3, 2013</td>
-						<td>
-							<a href="" class="active" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
-						</td>
-					</tr>
-					<tr>
-						<td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-						<td>Avatar system</td>
-						<td>15c</td>
-						<td>Jul 2, 2013</td>
-						<td>
-							<a href="" class="active" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
-						</td>
-					</tr>
-					<tr>
-						<td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-						<td>Videodown</td>
-						<td>4c</td>
-						<td>Jul 1, 2013</td>
-						<td>
-							<a href="" class="active" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
-						</td>
-					</tr>
+					@endforeach
 				</tbody>
 			</table>
 		</div>
 		<footer class="panel-footer">
 			<div class="row">
-				
+
 				<div class="col-sm-5 text-center">
-					<small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+					<small class="text-muted inline m-t-sm m-b-sm">showing {{$productlist->currentPage()*$productlist->perPage()-$productlist->perPage() + 1}}-{{$productlist->currentPage()*$productlist->perPage()}} of {{$productlist->total()}} items</small>
 				</div>
 				<div class="col-sm-7 text-right text-center-xs">                
 					<ul class="pagination pagination-sm m-t-none m-b-none">
-						<li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-						<li><a href="">1</a></li>
-						<li><a href="">2</a></li>
-						<li><a href="">3</a></li>
-						<li><a href="">4</a></li>
-						<li><a href=""><i class="fa fa-chevron-right"></i></a></li>
+						<li><a @if($productlist->currentPage() == 1) href="{{$productlist->url($productlist->lastPage())}}" @else href="{{$productlist->previousPageUrl()}}" @endif><i class="fa fa-chevron-left"></i></a></li>
+						@for($i=1; $i<=$productlist->lastPage(); $i++)
+						<li @if($i == $productlist->currentPage()) class="active" @endif><a href="{{$productlist->url($i)}}">{{$i}}</a></li>
+						@endfor
+						<li><a @if($productlist->currentPage() == $productlist->lastPage()) href="{{$productlist->url(1)}}" @else href="{{$productlist->nextPageUrl()}}" @endif><i class="fa fa-chevron-right"></i></a></li>
 					</ul>
 				</div>
 			</div>
