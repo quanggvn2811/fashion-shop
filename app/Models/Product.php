@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $table = 'tbl_fs-prodcuts';
+    protected $table = 'tbl_fs_products';
 
     protected $guarded = [];
 

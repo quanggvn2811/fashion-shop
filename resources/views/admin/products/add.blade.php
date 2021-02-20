@@ -11,17 +11,18 @@
 				<div class="position-center">
 					<form method="post" action="{{URL::to('admin/products')}}" enctype="multipart/form-data">
 						@csrf
+						@include('errors.note')
 						<div class="form-group">
 							<label for="name">Name</label>
-							<input type="text" class="form-control" name="name" placeholder="Enter name product">
+							<input required="" type="text" class="form-control" name="name" placeholder="Enter name product">
 						</div>
 						<div class="form-group">
 							<label for="price">Price</label>
-							<input type="number" class="form-control" name="price">
+							<input required type="number" class="form-control" name="price">
 						</div>
 						<div class="form-group">
 							<label for="quantity">Quantity</label>
-							<input type="number" class="form-control" name="quantity">
+							<input required type="number" class="form-control" name="quantity">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputFile">Images:</label>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Http\Requests\Admin\AddProductRequest;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -27,8 +28,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $data['catelist'] = Category::all();
-        $data['brandlist'] = Brand::all();
+        $data['catelist'] = Category::orderBy('prodline_id', 'DESC')->get();
+        $data['brandlist'] = Brand::orderBy('brand_id', 'DESC')->get();
         return view('admin.products.add', $data);
     }
 
@@ -38,10 +39,36 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddProductRequest $request)
     {
-        dd($request->all());
+        $product = new Product;
+        $product->name = test_input($request->name);
+        $product->slug = str_slug(test_input($request->name));
+        $product->price = test_input($request->price);
+        $product->quantity = test_input($request->quantity);
+        $product->content = test_input($request->content);
+        $product->description = test_input($request->desc);
+        $product->prodline_id = $request->category;
+        $product->brand_id = $request->brand;
+        $display = 1;
+        if (!$request->display){
+            $display = 0;
+        }
+        $product->display = $display;
+       // insert multiple images
+        $img_db = array();
+        if ($request->hasFile('img')) {
+         $images = $request->file('img');
+         foreach($images as $image){
+            $img_name = $image->getClientOriginalName();
+            $image->storeAs('public/avatars', $img_name);
+            $img_db[] = $img_name;
+        }
     }
+    $product->images = json_encode($img_db);
+    $product->save();
+    return redirect()->intended('admin/products');
+}
 
     /**
      * Display the specified resource.
