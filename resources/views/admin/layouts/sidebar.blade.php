@@ -36,8 +36,8 @@
                         <span>Sản phẩm</span>
                     </a>
                     <ul class="sub">
-                          <li><a href="{{URL::to('/admin/product')}}">Danh sách sản phẩm</a></li>
-                          <li><a href="{{URL::to('/admin/product/create')}}">Thêm sản phẩm</a></li>
+                          <li><a href="{{URL::to('/admin/products')}}">Danh sách sản phẩm</a></li>
+                          <li><a href="{{URL::to('/admin/products/create')}}">Thêm sản phẩm</a></li>
                       </ul>
                 </li>
                 <li class="sub-menu">
