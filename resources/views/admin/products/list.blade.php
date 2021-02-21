@@ -54,7 +54,7 @@
 						<td><a href=""><img style="max-width: 200px; max-height: 200px;" src="{{url('storage/avatars/' . $img[0])}}" alt=""></a></td>
 						<td><span class="text-ellipsis">{{number_format($prod->price)}}</span></td>
 						<td><span class="text-ellipsis">{{number_format($prod->quantity)}}</span></td>
-						<td><input type="checkbox" @if($prod->display) checked="" @endif data-toggle="toggle" data-onstyle="success" name=""></td>
+						<td onclick="changeDisplayProduct('{{$prod->prod_id}}', '{{$prod->display}}')"><input type="checkbox" @if($prod->display) checked="" @endif data-toggle="toggle" data-onstyle="success" name=""></td>
 						<td>
 							<a href="" class="active" ui-toggle-class="">
 								<i class="fa fa-check text-success text-active"></i>
@@ -89,5 +89,16 @@
 		</footer>
 	</div>
 </div>
+<script>
+	function changeDisplayProduct(prod_id, display_st){
+		$.get(
+			"{{asset('admin/products/display')}}",
+			{
+				prod_id: prod_id,
+				display_st: display_st
+			},
+			);
+	}
 
+</script>
 @endsection

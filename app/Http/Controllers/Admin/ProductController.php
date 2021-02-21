@@ -116,4 +116,9 @@ class ProductController extends Controller
         $product->delete();
         return back()->with('success', 'Delete product successfully');
     }
+    public function changeDisplayProduct(Request $request) {
+        $prod = Product::find($request->prod_id);
+        $prod->display = !($request->display_st);
+        $prod->save();
+    }
 }
