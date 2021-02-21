@@ -41,6 +41,7 @@
 						<th>Image</th>
 						<th>Price</th>
 						<th>Quantity</th>
+						<th>Edit</th>
 						<th>Display</th>
 						<th style="width:30px;"></th>
 					</tr>
@@ -49,14 +50,26 @@
 					@foreach($productlist as $prod)
 					<tr>
 						<td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-						<td><a href="">{{$prod->name}}</a></td>
-						<?php $img = json_decode($prod->images); ?>
-						<td><a href=""><img style="max-width: 200px; max-height: 200px;" src="{{url('storage/avatars/' . $img[0])}}" alt=""></a></td>
+						<td><a href="{{URL::to('admin/products/'.$prod->prod_id)}}">{{$prod->name}}</a></td>
+						<?php $img_db = json_decode($prod->images);
+								$img_path = 'server-side/images/img_not_found.png';
+								if (isset($img_db[0])) {
+									$img_path = 'storage/avatars/'.$img_db[0];
+								}	
+						 ?>
+						<td>
+							<a href="{{URL::to('admin/products/'.$prod->prod_id)}}"><img style="max-width: 200px; max-height: 200px;" src="{{url($img_path)}}" alt=""></a>
+						</td>	
 						<td><span class="text-ellipsis">{{number_format($prod->price)}}</span></td>
 						<td><span class="text-ellipsis">{{number_format($prod->quantity)}}</span></td>
+						<td>
+							<a href="{{URL::to('admin/products/'.$prod->prod_id.'/edit')}}">
+								<button class="btn btn-warning">Edit</button>
+							</a>
+						</td>
 						<td onclick="changeDisplayProduct('{{$prod->prod_id}}', '{{$prod->display}}')"><input type="checkbox" @if($prod->display) checked="" @endif data-toggle="toggle" data-onstyle="success" name=""></td>
 						<td>
-							<a href="" class="active" ui-toggle-class="">
+							<a href="{{URL::to('admin/products/'.$prod->prod_id)}}" class="active" ui-toggle-class="">
 								<i class="fa fa-check text-success text-active"></i>
 							</a>
 							<form id="formDelProd{{$prod->prod_id}}" action="{{URL::to('admin/products/'. $prod->prod_id)}}" method="post">

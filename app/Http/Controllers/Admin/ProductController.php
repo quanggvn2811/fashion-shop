@@ -65,8 +65,8 @@ class ProductController extends Controller
             $image->storeAs('public/avatars', $img_name);
             $img_db[] = $img_name;
         }
+        $product->images = json_encode($img_db);
     }
-    $product->images = json_encode($img_db);
     $product->save();
     return redirect()->intended('admin/products');
 }
@@ -79,7 +79,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        $data['product'] = $product;
+        return view('admin.products.show', $data);
     }
 
     /**
@@ -90,7 +91,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $data['brandlist'] = Brand::orderBy('brand_id', 'DESC')->get();
+        $data['catelist'] = Category::orderBy('prodline_id', 'DESC')->get();
+        $data['product'] = $product;
+        return view('admin.products.edit', $data);
     }
 
     /**
@@ -100,9 +104,35 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(AddProductRequest $request, Product $product)
     {
-        //
+        $product->name = test_input($request->name);
+        $product->slug = str_slug(test_input($request->name));
+        $product->price = test_input($request->price);
+        $product->quantity = test_input($request->quantity);
+        $product->content = test_input($request->content);
+        $product->description = test_input($request->desc);
+        $product->prodline_id = $request->category;
+        $product->brand_id = $request->brand;
+        $display = 1;
+        if (!$request->display){
+            $display = 0;
+        }
+        $product->display = $display;
+       // insert multiple images
+        $img_db = array();
+        if ($request->hasFile('img')) {
+         $images = $request->file('img');
+         foreach($images as $image){
+            $img_name = $image->getClientOriginalName();
+            $image->storeAs('public/avatars', $img_name);
+            $img_db[] = $img_name;
+        }
+        $product->images = json_encode($img_db);
+    }
+    $product->save();
+    return redirect()->intended('admin/products/'.$product->prod_id)->with('success', 'Edit product successfully');
+        
     }
 
     /**
