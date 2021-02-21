@@ -6,6 +6,7 @@
 		<div class="panel-heading">
 			List of products
 		</div>
+		@include('success.note')
 		<div class="row w3-res-tb">
 			<div class="col-sm-5 m-b-xs">
 				<select class="input-sm form-control w-sm inline v-middle">
@@ -55,7 +56,14 @@
 						<td><span class="text-ellipsis">{{number_format($prod->quantity)}}</span></td>
 						<td><input type="checkbox" @if($prod->display) checked="" @endif data-toggle="toggle" data-onstyle="success" name=""></td>
 						<td>
-							<a href="" class="active" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
+							<a href="" class="active" ui-toggle-class="">
+								<i class="fa fa-check text-success text-active"></i>
+							</a>
+							<form id="formDelProd{{$prod->prod_id}}" action="{{URL::to('admin/products/'. $prod->prod_id)}}" method="post">
+								@method('DELETE')
+								@csrf
+								<i onclick="if (confirm('Delete this product?')) {document.getElementById('formDelProd{{$prod->prod_id}}').submit()}" class="fa fa-times text-danger text"></i>
+							</form>
 						</td>
 					</tr>
 					@endforeach

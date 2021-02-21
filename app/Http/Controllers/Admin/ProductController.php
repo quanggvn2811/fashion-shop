@@ -18,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data['productlist'] = Product::orderBy('prod_id', 'DESC')->paginate(1);
+        $data['productlist'] = Product::orderBy('prod_id', 'DESC')->paginate(2);
         return view('admin.products.list', $data);
     }
 
@@ -113,6 +113,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return back()->with('success', 'Delete product successfully');
     }
 }
