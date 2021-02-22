@@ -24,7 +24,7 @@ class AddBrandRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>['required', 'string', 'max:255', 'unique:tbl_fs_brands,name', 'regex:/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/'],
+            'name'=>['required', 'string', 'max:255', 'unique:tbl_fs_brands,name'],
             'description'=>['max:255'],
         ];
     }

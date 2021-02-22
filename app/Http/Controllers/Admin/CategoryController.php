@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data['catelist'] = Category::orderBy('prodline_id', 'DESC')->paginate(3);
+        $data['catelist'] = Category::orderBy('prodline_id', 'DESC')->paginate(8);
         return view('admin.categories.list', $data);
     }
 

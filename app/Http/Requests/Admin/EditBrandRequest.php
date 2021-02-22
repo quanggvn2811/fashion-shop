@@ -24,7 +24,7 @@ class EditBrandRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>['required', 'unique:tbl_fs_brands,name,'.$this->segment(3).',brand_id', 'string', 'max:255', 'regex:/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/'],
+            'name'=>['required', 'unique:tbl_fs_brands,name,'.$this->segment(3).',brand_id', 'string', 'max:255'],
             'description'=>['max:255'],
         ];
     }

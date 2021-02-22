@@ -26,8 +26,8 @@
 					@foreach($catelist as $cate)
 					<tr>
 						<td>{{$cate->prodline_id}}</td>
-						<td><a href="{{URL::to('/admin/category/'. $cate->prodline_id . '/edit')}}">{{$cate->name}}</a></td>
-						<td><span class="text-ellipsis">{{$cate->description}}</span></td>
+						<td><a href="{{URL::to('/admin/category/'. $cate->prodline_id . '/edit')}}">{!!$cate->name!!}</a></td>
+						<td><span class="text-ellipsis">{!!$cate->description!!}</span></td>
 						{{-- <?php $parent = \App\Models\Category::find($cate->parent); ?> --}}
 						{{-- <td><span class="text-ellipsis">{{$cate->getParentsNames($cate->parent)}}</span></td> --}}
 						<td onclick="changeDisplayCate({{$cate->prodline_id}}, {{$cate->display}})"><input id="display" name="display" type="checkbox" @if($cate->display == 1) checked @endif data-toggle="toggle" data-onstyle="success"></td>

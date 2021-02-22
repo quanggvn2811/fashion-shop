@@ -27,8 +27,8 @@
 					@foreach($brandlist as $br)
 					<tr>
 						<td>{{$br->brand_id}}</td>
-						<td><a href="{{URL::to('/admin/brands/'. $br->brand_id . '/edit')}}">{{$br->name}}</a></td>
-						<td><span class="text-ellipsis">{{$br->description}}</span></td>
+						<td><a href="{{URL::to('/admin/brands/'. $br->brand_id . '/edit')}}">{!!$br->name!!}</a></td>
+						<td><span class="text-ellipsis">{!!$br->description!!}</span></td>
 						{{-- <?php $parent = \App\Models\Category::find($cate->parent); ?> --}}
 						{{-- <td><span class="text-ellipsis">{{$cate->getParentsNames($cate->parent)}}</span></td> --}}
 						<td onclick="changeDisplayBrand({{$br->brand_id}}, {{$br->display}})"><input id="display" name="display" type="checkbox" @if($br->display == 1) checked @endif data-toggle="toggle" data-onstyle="success"></td>

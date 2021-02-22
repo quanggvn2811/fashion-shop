@@ -24,7 +24,7 @@ class EditCategoryRequest extends FormRequest
     public function rules()
     {
        return [
-        'name'=>['required', 'unique:tbl_fs_productlines,name,'.$this->segment(3).',prodline_id', 'string', 'max:255', 'regex:/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/'],
+        'name'=>['required', 'unique:tbl_fs_productlines,name,'.$this->segment(3).',prodline_id', 'string', 'max:255'],
         'desc'=>['max:255'],
     ];
 }
