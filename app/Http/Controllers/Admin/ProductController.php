@@ -56,6 +56,7 @@ class ProductController extends Controller
             $display = 0;
         }
         $product->display = $display;
+        $product->feature = $request->featured;
        // insert multiple images
         $img_db = array();
         if ($request->hasFile('img')) {
@@ -119,6 +120,7 @@ class ProductController extends Controller
             $display = 0;
         }
         $product->display = $display;
+        $product->feature = $request->featured;
        // insert multiple images
         $img_db = array();
         if ($request->hasFile('img')) {

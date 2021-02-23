@@ -62,6 +62,14 @@
 								@endforeach
 							</select>
 						</div>
+						<div class="form-group">
+							<label for="">
+								Feature
+							</label>
+							<br>
+							Yes: <input type="radio" @if($product->feature === 1) checked=""  @endif name="featured" value="1">
+							No: <input type="radio" @if($product->feature === 0) checked=""  @endif name="featured" value="0">
+						</div>
 						<div class="checkbox">
 							<label>
 								<input name="display" type="checkbox" checked data-toggle="toggle" data-onstyle="success">Display this product
