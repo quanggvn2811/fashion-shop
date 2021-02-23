@@ -40,7 +40,7 @@ Route::group(['namespace'=>'Admin'], function(){
 });
 
 
-
+// Shop home - client side
 
 // Default route
 Route::fallback(function(){

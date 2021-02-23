@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+
+use App\Models\Brand;
+
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $data['catelist'] = Category::where('display', '=', '1')->get();
+        $data['brandlist'] = Brand::where('display', '=', 1)->get();
+        view()->share($data);
     }
 }
