@@ -42,7 +42,10 @@ Route::group(['namespace'=>'Admin'], function(){
 
 // Shop home - client side
 
+Route::group(['namespace'=>'Shop'], function(){
+	 Route::get('/', 'HomeController@getHome')->name('home');
+});
 // Default route
 Route::fallback(function(){
-	return view('shop.master');
+	return redirect()->route('home');
 });	

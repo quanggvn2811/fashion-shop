@@ -42,7 +42,7 @@
 							<label for="category">Category</label>
 							<select class="form-control" name="category">
 								@foreach($catelist as $cate)
-								<option value="{{$cate->prodline_id}}">{{$cate->name}}</option>
+								<option value="{{$cate->prodline_id}}">{!!$cate->name!!}</option>
 								@endforeach
 							</select>
 						</div>
@@ -50,7 +50,7 @@
 							<label for="brand">Brand</label>
 							<select class="form-control" name="brand">
 								@foreach($brandlist as $brand)
-								<option value="{{$brand->brand_id}}">{{$brand->name}}</option>
+								<option value="{{$brand->brand_id}}">{!!$brand->name!!}</option>
 								@endforeach
 							</select>
 						</div>
