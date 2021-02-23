@@ -44,6 +44,7 @@ Route::group(['namespace'=>'Admin'], function(){
 
 Route::group(['namespace'=>'Shop'], function(){
 	 Route::get('/', 'HomeController@getHome')->name('home');
+
 });
 // Default route
 Route::fallback(function(){
