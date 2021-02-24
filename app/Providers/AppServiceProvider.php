@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $data['url'] = url()->current(); // for loading layout
         $data['catelist'] = Category::where('display', '=', '1')->get();
         $data['brandlist'] = Brand::where('display', '=', 1)->get();
         view()->share($data);

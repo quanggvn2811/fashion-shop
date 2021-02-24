@@ -26,28 +26,31 @@
 </head><!--/head-->
 
 <body>
+    @section('adv')
     @include('shop.layouts.header')
-    
+    @if(!strpos($url, 'shop/') && !strpos($url, 'blog') && !strpos($url, 'contact'))
     @include('shop.layouts.slider')
-    
+    @endif
+    @show
     <section>
         <div class="container">
             <div class="row">
-             @include('shop.layouts.sidebar')
+                @if(!strpos($url, 'shop/checkout') && !strpos($url, 'shop/cart') && !strpos($url, 'shop/login') && !strpos($url, 'contact'))
+                @include('shop.layouts.sidebar')
+                @endif
+                @yield('content')
+            </div>
+        </div>
+    </section>
 
-            @yield('content')
-         </div>
-     </div>
- </section>
-
- @include('shop.layouts.footer')
+    @include('shop.layouts.footer')
 
 
- <script src="js/jquery.js"></script>
- <script src="js/bootstrap.min.js"></script>
- <script src="js/jquery.scrollUp.min.js"></script>
- <script src="js/price-range.js"></script>
- <script src="js/jquery.prettyPhoto.js"></script>
- <script src="js/main.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+    <script src="js/price-range.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

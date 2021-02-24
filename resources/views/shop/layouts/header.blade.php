@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logo pull-left">
-                        <a href="index.html"><img src="images/home/logo.png" alt="" /></a>
+                        <a href="{{URL::to('/')}}"><img src="images/home/logo.png" alt="" /></a>
                     </div>
                     <div class="btn-group pull-right">
                         <div class="btn-group">
@@ -85,24 +85,24 @@
                     </div>
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a href="index.html" class="active">Home</a></li>
-                            <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                            <li><a href="{{URL::to('/')}}" class="active">Home</a></li>
+                            <li class="dropdown"><a href="{{URL::to('shop/products')}}">Shop<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
-                                    <li><a href="shop.html">Products</a></li>
-                                    <li><a href="product-details.html">Product Details</a></li> 
-                                    <li><a href="checkout.html">Checkout</a></li> 
-                                    <li><a href="cart.html">Cart</a></li> 
-                                    <li><a href="login.html">Login</a></li> 
+                                    <li><a href="{{URL::to('shop/products')}}">Products</a></li>
+                                    <li><a href="{{URL::to('shop/product-details')}}">Product Details</a></li> 
+                                    <li><a href="{{URL::to('shop/checkout')}}">Checkout</a></li> 
+                                    <li><a href="{{URL::to('shop/cart')}}">Cart</a></li> 
+                                    <li><a href="{{URL::to('shop/login')}}">Login</a></li> 
                                 </ul>
                             </li> 
-                            <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
+                            <li class="dropdown"><a href="{{URL::to('blog/blog-list')}}">Blog<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
-                                    <li><a href="blog.html">Blog List</a></li>
-                                    <li><a href="blog-single.html">Blog Single</a></li>
+                                    <li><a href="{{URL::to('blog/blog-list')}}">Blog List</a></li>
+                                    <li><a href="{{URL::to('blog/blog-single')}}">Blog Single</a></li>
                                 </ul>
                             </li> 
-                            <li><a href="404.html">404</a></li>
-                            <li><a href="contact-us.html">Contact</a></li>
+                            <li><a href="{{URL::to('/')}}">404</a></li>
+                            <li><a href="{{URL::to('contact')}}">Contact</a></li>
                         </ul>
                     </div>
                 </div>

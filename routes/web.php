@@ -45,6 +45,24 @@ Route::group(['namespace'=>'Admin'], function(){
 Route::group(['namespace'=>'Shop'], function(){
 	 Route::get('/', 'HomeController@getHome')->name('home');
 
+	 // Shop
+	 Route::group(['prefix'=>'shop'], function() {
+	 	Route::get('products', 'HomeController@getProducts');
+	 	Route::get('product-details', 'HomeController@getProductDetails');
+	 	Route::get('checkout', 'HomeController@getCheckout');
+	 	Route::get('cart', 'HomeController@getCart');
+	 	Route::get('login', 'HomeController@getLogin');
+	 });
+
+	 // Blog
+	 Route::group(['prefix'=>'blog'], function() {
+	 	Route::get('blog-list', 'HomeController@getBlogList');
+	 	Route::get('blog-single', 'HomeController@getBlogSingle');
+	 });
+
+	 // Contact us
+	 Route::get('/contact', 'HomeController@getContactUs');
+
 });
 // Default route
 Route::fallback(function(){

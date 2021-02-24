@@ -12,4 +12,29 @@ class HomeController extends Controller
     	$data['featured_prod'] = Product::where('feature', '=', 1)->where('display', '=', 1)->orderBy('prod_id', 'DESC')->take(6)->get();
     	return view('shop.home', $data);
     }
+    public function getProducts(){
+    	return view('shop.products.product-list');
+    }
+    public function getProductDetails(){
+        return view('shop.products.product-details');
+    }
+    public function getlogin(){
+    	return view('shop.customer.login');
+    }
+    public function getCheckout(){
+        return view('shop.customer.checkout');
+    }
+    public function getCart(){
+        return view('shop.customer.cart');
+    }
+    public function getBlogList(){
+        return view('shop.blogs.blog');
+    }
+    public function getBlogSingle(){
+        return view('shop.blogs.blog-single');
+    }
+    public function getContactUs(){
+        return view('shop.contact-us');
+    }
+    
 }
