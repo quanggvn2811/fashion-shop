@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Shop;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
+use DB;
 
 class HomeController extends Controller
 {
@@ -35,6 +37,17 @@ class HomeController extends Controller
     }
     public function getContactUs(){
         return view('shop.contact-us');
+    }
+    public function getProductByCategory($id, $slug){
+        // $data['products'] = DB::table('tbl_fs_products')->where('tbl_fs_products.prodline_id', '=', $id)->where('tbl_fs_products.display', '=', 1)
+        // ->join('tbl_fs_productlines', 'tbl_fs_productlines.prodline_id', '=', 'tbl_fs_products.prodline_id')
+        // ->select('tbl_fs_products.*', 'tbl_fs_productlines.name as category')
+        // ->orderBy('tbl_fs_products.prod_id', 'DESC')->paginate(8);
+
+        $data['products'] = Product::where('prodline_id', '=', $id)->where('display', '=', 1)->orderBy('prod_id', 'DESC')->paginate(8);
+        $data['category'] = Category::find($id)->name;
+
+        return view('shop.categories.product-by-category', $data);
     }
     
 }
