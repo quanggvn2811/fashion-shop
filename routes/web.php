@@ -60,7 +60,11 @@ Route::group(['namespace'=>'Shop'], function(){
 	 	Route::get('blog-single', 'HomeController@getBlogSingle');
 	 });
 
+	 // Fillter product by category
 	 Route::get('categories/{cate_id}/{slug}', 'HomeController@getProductByCategory');
+
+	  // Fillter product by brand
+	 Route::get('brands/{brand_id}/{slug}', 'HomeController@getProductByBrand');
 
 	 // Contact us
 	 Route::get('/contact', 'HomeController@getContactUs');

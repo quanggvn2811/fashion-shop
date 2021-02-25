@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Shop;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Brand;
 use App\Models\Category;
 use DB;
 
@@ -49,5 +50,12 @@ class HomeController extends Controller
 
         return view('shop.categories.product-by-category', $data);
     }
-    
+
+    public function getProductByBrand($id, $slug){
+     $data['products'] = Product::where('brand_id', '=', $id)->where('display', '=', 1)->orderBy('prod_id', 'DESC')->paginate(3);
+     $data['brand'] = Brand::find($id)->name;
+
+     return view('shop.brands.product-by-brand', $data);
+ }
+
 }
