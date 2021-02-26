@@ -5,7 +5,7 @@
             @foreach($catelist as $cate)
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title"><a href="{{URL::to('categories/'.$cate->prodline_id.'/'. str_slug($cate->name))}}">{!!$cate->name!!}</a></h4>
+                    <h4 class="panel-title"><a href="{{URL::to('shop/categories/'.$cate->prodline_id.'/'. str_slug($cate->name))}}">{!!$cate->name!!}</a></h4>
                 </div>
             </div>
             @endforeach
@@ -16,7 +16,7 @@
             <div class="brands-name">
                 <ul class="nav nav-pills nav-stacked">
                     @foreach($brandlist as $br)
-                    <li><a href="{{URL::to('brands/'.$br->brand_id.'/'.str_slug($br->name))}}"> <span class="pull-right"></span>{!!$br->name!!}</a></li>
+                    <li><a href="{{URL::to('shop/brands/'.$br->brand_id.'/'.str_slug($br->name))}}"> <span class="pull-right"></span>{!!$br->name!!}</a></li>
                     @endforeach
                 </ul>
             </div>

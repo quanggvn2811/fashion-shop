@@ -43,31 +43,34 @@ Route::group(['namespace'=>'Admin'], function(){
 // Shop home - client side
 
 Route::group(['namespace'=>'Shop'], function(){
-	 Route::get('/', 'HomeController@getHome')->name('home');
+	Route::get('/', 'HomeController@getHome')->name('home');
 
 	 // Shop
-	 Route::group(['prefix'=>'shop'], function() {
-	 	Route::get('products', 'HomeController@getProducts');
-	 	Route::get('product-details', 'HomeController@getProductDetails');
-	 	Route::get('checkout', 'HomeController@getCheckout');
-	 	Route::get('cart', 'HomeController@getCart');
-	 	Route::get('login', 'HomeController@getLogin');
-	 });
+	Route::group(['prefix'=>'shop'], function() {
+		// Get all products
+		Route::get('products', 'ProductController@getAllProducts');
+
+	 	// Fillter product by category
+		Route::get('categories/{cate_id}/{slug}', 'ProductController@getProductByCategory');
+
+	  	// Fillter product by brand
+		Route::get('brands/{brand_id}/{slug}', 'ProductController@getProductByBrand');
+		Route::get('product-details', 'ProductController@getProductDetails');
+		Route::get('checkout', 'HomeController@getCheckout');
+		Route::get('cart', 'HomeController@getCart');
+		Route::get('login', 'HomeController@getLogin');
+	});
 
 	 // Blog
-	 Route::group(['prefix'=>'blog'], function() {
-	 	Route::get('blog-list', 'HomeController@getBlogList');
-	 	Route::get('blog-single', 'HomeController@getBlogSingle');
-	 });
+	Route::group(['prefix'=>'blog'], function() {
+		Route::get('blog-list', 'HomeController@getBlogList');
+		Route::get('blog-single', 'HomeController@getBlogSingle');
+	});
 
-	 // Fillter product by category
-	 Route::get('categories/{cate_id}/{slug}', 'HomeController@getProductByCategory');
 
-	  // Fillter product by brand
-	 Route::get('brands/{brand_id}/{slug}', 'HomeController@getProductByBrand');
 
 	 // Contact us
-	 Route::get('/contact', 'HomeController@getContactUs');
+	Route::get('/contact', 'HomeController@getContactUs');
 
 });
 // Default route
