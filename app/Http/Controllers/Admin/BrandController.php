@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\AddBrandRequest;
 use App\Http\Requests\Admin\EditBrandRequest;
@@ -114,14 +115,23 @@ class BrandController extends Controller
     }
     public function changeDisplayBrand(Request $request){
         $brand_id = $request->brand_id;
-        $display = $request->display_st;
-        if ($display) {
-            $display = 0;
-        } else {
-            $display = 1;
-        }
+        $display_st = $request->display_st;
+        // if ($display) {
+        //     $display = 0;
+        // } else {
+        //     $display = 1;
+        // }
+        $display_st = !$display_st;
         $brand = Brand::find($brand_id);
-        $brand->display = $display;
+        $brand->display = $display_st;
         $brand->save();
+
+        // Dont display category => dont display products of category
+        $productlist = Product::where('brand_id', '=', $brand_id)->get();
+        $prod_id_arr = array();
+        foreach ($productlist as $prod) {
+            $prod_id_arr[] = $prod->prod_id;
+        }
+        Product::whereIn('prod_id', $prod_id_arr)->update(['display'=>$display_st]);
     }
 }

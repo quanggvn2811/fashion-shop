@@ -74,13 +74,13 @@
 				cate_id: cate_id,
 				display_st: display_st
 			});
-		request.done(function(responseText, statusText, xhr){
-			if (statusText == 'error') {
-				alert('Error: ' + xhr.status + ':' + xhr.statusText);
-			} else {
-				document.getElementById('display').checked = responseText;
-			}
-		});
+		// request.done(function(responseText, statusText, xhr){
+		// 	if (statusText == 'error') {
+		// 		alert('Error: ' + xhr.status + ':' + xhr.statusText);
+		// 	} else {
+		// 		document.getElementById('test').innerHTML = responseText;
+		// 	}
+		// });
 	}
 </script>
 

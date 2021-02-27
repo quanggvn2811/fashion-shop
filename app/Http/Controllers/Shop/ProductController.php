@@ -13,7 +13,7 @@ class ProductController extends Controller
 
 	 // Show all products
     public function getAllProducts(){
-    	$data['allProducts'] = Product::where('feature', '=', 1)->where('display', '=', 1)->orderBy('prod_id', 'DESC')->paginate(3);
+    	$data['allProducts'] = Product::where('feature', '=', 1)->where('display', '=', 1)->orderBy('prod_id', 'DESC')->paginate(9);
     	return view('shop.products.product-list', $data);
     }
     public function getProductDetails(){

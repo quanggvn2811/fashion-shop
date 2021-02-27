@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\AddCategoryRequest;
 use App\Http\Requests\Admin\EditCategoryRequest;
@@ -123,13 +124,23 @@ class CategoryController extends Controller
         $cate_id = $request->cate_id;
         $display_st = $request->display_st;
         $cate = Category::find($cate_id);
-        if ($display_st) {
-            $cate->display = 0;
-            echo "false";
-        } else {
-            $cate->display = 1;
-            echo "true";
-        }
+        // if ($display_st) {
+        //     $cate->display = 0;
+        //     echo "false";
+        // } else {
+        //     $cate->display = 1;
+        //     echo "true";
+        // }
+        $display_st = !$display_st;
+        $cate->display = $display_st;
         $cate->save();
+
+        // Dont display category => dont display products of category
+        $productlist = Product::where('prodline_id', '=', $cate_id)->get();
+        $prod_id_arr = array();
+        foreach ($productlist as $prod) {
+            $prod_id_arr[] = $prod->prod_id;
+        }
+        Product::whereIn('prod_id', $prod_id_arr)->update(['display'=>$display_st]);
     }
 }
