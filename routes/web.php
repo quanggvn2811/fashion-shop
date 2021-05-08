@@ -56,6 +56,7 @@ Route::group(['namespace'=>'Shop'], function(){
 	  	// Fillter product by brand
 		Route::get('brands/{brand_id}/{slug}', 'ProductController@getProductByBrand');
 		Route::get('product-details', 'ProductController@getProductDetails');
+		Route::get('/search', 'ProductController@getSearchProduct');
 		Route::get('checkout', 'HomeController@getCheckout');
 		Route::get('cart', 'HomeController@getCart');
 		Route::get('login', 'HomeController@getLogin');

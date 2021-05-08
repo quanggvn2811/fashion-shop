@@ -1,5 +1,5 @@
 @extends('shop.master')
-@section('title', 'E-SHOPPER | HOME')
+@section('title', 'HOME | E-SHOPPER')
 @section('content')
 <div class="col-sm-9 padding-right">
     <div class="features_items"><!--features_items-->

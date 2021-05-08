@@ -1,5 +1,5 @@
 @extends('shop.master')
-@section('title', 'Blog | E-SHOPPER')
+@section('title', 'BLOG | E-SHOPPER')
 @section('content')
 <div class="col-sm-9">
 	<div class="blog-post-area">

@@ -1,18 +1,10 @@
 @extends('shop.master')
-@section('title', 'SHOP | E-SHOPPER')
-@section('adv')
-@parent
-<section id="advertisement">
-	<div class="container">
-		<img src="images/shop/advertisement.jpg" alt="" />
-	</div>
-</section>
-@endsection
+@section('title', 'SEARCH | E-SHOPPER')
 @section('content')
 <div class="col-sm-9 padding-right">
 	<div class="features_items"><!--features_items-->
-		<h2 class="title text-center">Features Items</h2>
-		@foreach($allProducts as $product)
+		<h2 class="title text-center">Result for search: {{$keyword}}</h2>
+		@foreach($searchlist as $product)
 		<div class="col-sm-4">
 			<div class="product-image-wrapper">
 				<div class="single-products">
@@ -25,13 +17,13 @@
 						}
 						?>
 						<img style="max-width: 250px; max-height: 225px;" src="{{url($img_path)}}" alt="" />
-						<h2>{{number_format($product->price)}} Đ</h2>
+						<h2>{{number_format($product->price)}}</h2>
 						<p>{!! $product->name !!}</p>
 						<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 					</div>
 					<div class="product-overlay">
 						<div class="overlay-content">
-							<h2>{{number_format($product->price)}} Đ</h2>
+							<h2>{{number_format($product->price)}}</h2>
 							<p>{!! $product->name !!}</p>
 							<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 						</div>
@@ -48,10 +40,11 @@
 		@endforeach
 		<div class="clearfix"></div>
 		<ul class="pagination">
-			@for($i=1; $i<= $allProducts->lastPage(); $i++)
-			<li @if($allProducts->currentPage() === $i) class="active" @endif><a href="{{$allProducts->url($i)}}">{{$i}}</a></li>
+			{{-- @for($i=1; $i<= $searchlist->lastPage(); $i++)
+			<li @if($searchlist->currentPage() === $i) class="active" @endif><a href="{{$searchlist->url($i)}}">{{$i}}</a></li>
 			@endfor
-			<li><a @if($allProducts->lastPage() == $allProducts->currentPage()) href="{{$allProducts->url(1)}}" @else href="{{$allProducts->nextPageUrl()}}" @endif>&raquo;</a></li>
+			<li><a @if($searchlist->lastPage() == $searchlist->currentPage()) href="{{$searchlist->url(1)}}" @else href="{{$searchlist->nextPageUrl()}}" @endif>&raquo;</a></li> --}}
+			{{ $searchlist->appends(request()->all())->links() }}
 		</ul>
 	</div><!--features_items-->
 </div>

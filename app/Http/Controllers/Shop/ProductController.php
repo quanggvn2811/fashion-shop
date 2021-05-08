@@ -12,13 +12,13 @@ class ProductController extends Controller
 {
 
 	 // Show all products
-    public function getAllProducts(){
-    	$data['allProducts'] = Product::where('feature', '=', 1)->where('display', '=', 1)->orderBy('prod_id', 'DESC')->paginate(9);
-    	return view('shop.products.product-list', $data);
-    }
-    public function getProductDetails(){
-        return view('shop.products.product-details');
-    }
+	public function getAllProducts(){
+		$data['allProducts'] = Product::where('feature', '=', 1)->where('display', '=', 1)->orderBy('prod_id', 'DESC')->paginate(9);
+		return view('shop.products.product-list', $data);
+	}
+	public function getProductDetails(){
+		return view('shop.products.product-details');
+	}
 
     // Fillter products by category
 	public function getProductByCategory($id, $slug){
@@ -39,5 +39,25 @@ class ProductController extends Controller
 		$data['brand'] = Brand::find($id)->name;
 
 		return view('shop.brands.product-by-brand', $data);
+	}
+
+	// Search products
+	public function getSearchProduct(Request $request) {
+		if (isset($request->sText)) {
+			$data['keyword'] = $request->sText;
+			$search = test_input($request->sText);
+			$search = str_replace(' ', '%', $search);
+			$search = '%'.$search.'%';
+			$data['searchlist'] = Product::where('display', '=', 1)->where(function($query) use ($search) {
+				$query->where('name', 'like', $search)->orWhere('content', 'like', $search)
+				->orWhere('description', 'like', $search)->orderBy('prod_id', 'DESC');
+			})->paginate(3);
+		} else {
+			return back();
+		}
+
+		$search = $request->search;
+
+		return view('shop.products.product-search', $data);
 	}
 }
