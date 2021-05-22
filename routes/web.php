@@ -50,16 +50,25 @@ Route::group(['namespace'=>'Shop'], function(){
 		// Get all products
 		Route::get('products', 'ProductController@getAllProducts');
 
-	 	// Fillter product by category
+	 	// Filter product by category
 		Route::get('categories/{cate_id}/{slug}', 'ProductController@getProductByCategory');
 
-	  	// Fillter product by brand
+	  	// Filter product by brand
 		Route::get('brands/{brand_id}/{slug}', 'ProductController@getProductByBrand');
 		Route::get('product-details', 'ProductController@getProductDetails');
 		Route::get('/search', 'ProductController@getSearchProduct');
-		Route::get('checkout', 'HomeController@getCheckout');
-		Route::get('cart', 'HomeController@getCart');
-		Route::get('login', 'HomeController@getLogin');
+
+		// Customer
+        Route::group(['prefix'=>'customer'], function() {
+            // Login
+            Route::get('login', 'CustomerController@getLogin');
+            Route::post('sign-up', 'CustomerController@postSignUp');
+
+            // Checkout
+            Route::get('checkout', 'HomeController@getCheckout');
+            Route::get('cart', 'HomeController@getCart');
+        });
+
 	});
 
 	 // Blog
@@ -77,4 +86,4 @@ Route::group(['namespace'=>'Shop'], function(){
 // Default route
 Route::fallback(function(){
 	return redirect()->route('home');
-});	
+});

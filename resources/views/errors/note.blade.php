@@ -9,3 +9,7 @@
 @if(Session::has('delCateSuccess'))
 <p class="alert alert-danger">{{Session::get('delCateSuccess')}}</p>
 @endif
+
+@if(Session::has('error'))
+    <p class="alert alert-danger">{{Session::get('error')}}</p>
+@endif

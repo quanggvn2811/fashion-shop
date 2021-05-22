@@ -24,7 +24,7 @@
             </div>
         </div>
     </div><!--/header_top-->
-    
+
     <div class="header-middle"><!--header-middle-->
         <div class="container">
             <div class="row">
@@ -43,7 +43,7 @@
                                 <li><a href="#">UK</a></li>
                             </ul>
                         </div>
-                        
+
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
                                 DOLLAR
@@ -61,9 +61,9 @@
                         <ul class="nav navbar-nav">
                             <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                             <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                            <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+                            <li><a href="{{URL::to('shop/customer/login')}}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                            <li><a href="{{URL::to('shop/customer/login')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            <li><a href="{{URL::to('shop/customer/login')}}"><i class="fa fa-lock"></i> Login</a></li>
                         </ul>
                     </div>
                 </div>
@@ -89,18 +89,18 @@
                             <li class="dropdown"><a href="{{URL::to('shop/products')}}">Shop<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="{{URL::to('shop/products')}}">Products</a></li>
-                                    <li><a href="{{URL::to('shop/product-details')}}">Product Details</a></li> 
-                                    <li><a href="{{URL::to('shop/checkout')}}">Checkout</a></li> 
-                                    <li><a href="{{URL::to('shop/cart')}}">Cart</a></li> 
-                                    <li><a href="{{URL::to('shop/login')}}">Login</a></li> 
+                                    <li><a href="{{URL::to('shop/product-details')}}">Product Details</a></li>
+                                    <li><a href="{{URL::to('shop/checkout')}}">Checkout</a></li>
+                                    <li><a href="{{URL::to('shop/cart')}}">Cart</a></li>
+                                    <li><a href="{{URL::to('shop/login')}}">Login</a></li>
                                 </ul>
-                            </li> 
+                            </li>
                             <li class="dropdown"><a href="{{URL::to('blog/blog-list')}}">Blog<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="{{URL::to('blog/blog-list')}}">Blog List</a></li>
                                     <li><a href="{{URL::to('blog/blog-single')}}">Blog Single</a></li>
                                 </ul>
-                            </li> 
+                            </li>
                             <li><a href="{{URL::to('/')}}">404</a></li>
                             <li><a href="{{URL::to('contact')}}">Contact</a></li>
                         </ul>
