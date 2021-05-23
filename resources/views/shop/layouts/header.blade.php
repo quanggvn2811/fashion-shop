@@ -63,7 +63,11 @@
                             <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                             <li><a href="{{URL::to('shop/customer/login')}}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                             <li><a href="{{URL::to('shop/customer/login')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                            <li><a href="{{URL::to('shop/customer/login')}}"><i class="fa fa-lock"></i> Login</a></li>
+                           @if(isset($data['CustomerSignedIn_username']))
+                                <li><a href="{{URL::to('shop/customer/logout')}}"><i class="fa fa-unlock"></i> Logout</a></li>
+                            @else
+                                <li><a href="{{URL::to('shop/customer/login')}}"><i class="fa fa-lock"></i> Login</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>

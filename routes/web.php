@@ -61,8 +61,11 @@ Route::group(['namespace'=>'Shop'], function(){
 		// Customer
         Route::group(['prefix'=>'customer'], function() {
             // Login
-            Route::get('login', 'CustomerController@getLogin');
+            Route::get('login', 'CustomerController@getLogin')->name('customerLogin');
             Route::post('sign-up', 'CustomerController@postSignUp');
+
+            // Logout
+            Route::get('logout', 'CustomerController@getLogOut');
 
             // Checkout
             Route::get('checkout', 'HomeController@getCheckout');

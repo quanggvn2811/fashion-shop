@@ -57,12 +57,16 @@ if (!class_exists('CustomerController')) {
                 $customer->save();
 
                 // Set cookie signed in
-                Cookie::queue('CustomerSignedIn', $username . '--' . $email, time() + (86400 * 30)); // Expire in 30 days
-
-                return redirect()->route('home');
-
-
+                // Cookie::queue('CustomerSignedIn', $username . '--' . $email, time() + (86400 * 30)); // Expire in 30 days
+                $cookie_value = array($username, $email);
+                return redirect()->route('home')->cookie('CustomerSignedIn', json_encode($cookie_value), time() + (86400 * 30));
             }
         }
+
+        public function getLogOut(Request $request)
+        {
+            return redirect()->route('customerLogin')->withoutCookie('CustomerSignedIn');
+        }
+
     }
 }
