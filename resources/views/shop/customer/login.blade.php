@@ -8,14 +8,15 @@
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
 						<h2>Login to your account</h2>
-						<form action="#">
-							<input type="text" placeholder="Name" />
-							<input type="email" placeholder="Email Address" />
+						<form action="{{URL::to('shop/customer/log-in')}}" method="POST">
+                            @csrf
+							<input type="text" name="account" placeholder="Username or email Address" />
+                            <input type="password" name="secret" placeholder="Password" />
 							<span>
-								<input type="checkbox" class="checkbox">
+								<input type="checkbox" name="remember" class="checkbox">
 								Keep me signed in
 							</span>
-							<button type="submit" class="btn btn-default">Login</button>
+							<button type="submit" name="log-in" class="btn btn-default">Login</button>
 						</form>
 					</div><!--/login form-->
 				</div>

@@ -63,6 +63,7 @@ Route::group(['namespace'=>'Shop'], function(){
             // Login
             Route::get('login', 'CustomerController@getLogin')->name('customerLogin');
             Route::post('sign-up', 'CustomerController@postSignUp');
+            Route::post('log-in', 'CustomerController@postLogin');
 
             // Logout
             Route::get('logout', 'CustomerController@getLogOut');

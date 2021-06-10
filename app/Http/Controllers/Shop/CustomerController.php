@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Shop\CustomerSignUpRequest;
 use App\Models\Customer;
-use Illuminate\Support\Facades\Cookie;
-
+use Session;
 /**
  * Customer controller handle
  */
@@ -57,15 +56,60 @@ if (!class_exists('CustomerController')) {
                 $customer->save();
 
                 // Set cookie signed in
-                // Cookie::queue('CustomerSignedIn', $username . '--' . $email, time() + (86400 * 30)); // Expire in 30 days
+                /*Cookie::queue('CustomerSignedIn', $username . '--' . $email, time() + (86400 * 30)); // Expire in 30 days
                 $cookie_value = array($username, $email);
-                return redirect()->route('home')->cookie('CustomerSignedIn', json_encode($cookie_value), time() + (86400 * 30));
+                Session::put('logged-in', 'logged-in'); // flag to show logout link
+                return redirect()->route('home')->cookie('CustomerSignedIn', json_encode($cookie_value), time() + (86400 * 30)); // main data*/
+
+                // Using session
+                Session::put('username_logged_in', $username);
+                Session::put('email_logged_in', $email);
+                return redirect()->route('home');
             }
+        }
+
+        /**
+         * Receive customer login data
+         *
+         * @param Request $request
+         *
+         * @return \Illuminate\Http\RedirectResponse
+         */
+        public function postLogin(Request $request) {
+            $account = test_input($request->account);
+            $secret = md5($request->secret);
+            if ($request->remember) {
+                $remember = true;
+            } else {
+                $remember = false;
+            }
+
+            // Auth
+            $result = Customer::where(function($query) use ($account){
+                $query->where('username', '=', $account)->orWhere('email', '=', $account);
+            })->where('password', '=', $secret)->first();
+
+            /*$cookie_value = array();
+           Session::put('logged-in', 'logged-in'); // flag to show logout link
+           return redirect()->route('home')->cookie('CustomerSignedIn', json_encode($cookie_value), time() + (86400 * 30));*/
+
+            // Using session
+            if ($result) {
+                Session::put('account_logged_in', $account);
+                return redirect()->intended('/');
+            } else {
+                return back()->withInput()->with('error', 'Invalid account or password');
+            }
+
         }
 
         public function getLogOut(Request $request)
         {
-            return redirect()->route('customerLogin')->withoutCookie('CustomerSignedIn');
+            /*Session::forget('logged-in');
+            return redirect()->route('customerLogin')->withoutCookie('CustomerSignedIn');*/
+
+            Session::flush();
+            return redirect()->intended('/');
         }
 
     }
