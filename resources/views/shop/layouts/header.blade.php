@@ -116,6 +116,12 @@
                             <input type="text" name="sText" placeholder="Search"/>
                        </form>
                     </div>
+                    <div style="float: right;">
+                        <form action="">
+                            <input id="imgSearch" type="file" name="imgSearch" class="hidden" onchange="changeImg(this)">
+                            <i alt="Search product by iamge" style="font-size: 26px" onmouseup="this.style.color='black';" onmousedown="this.style.color='blue';" class="fa fa-camera"></i>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
