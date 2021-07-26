@@ -35,6 +35,7 @@ final class Versions
     const VERSIONS          = array (
   'asm89/stack-cors' => 'v2.0.2@8d8f88b3b3830916be94292c1fbce84433efb1aa',
   'brick/math' => '0.9.2@dff976c2f3487d42c1db75a3b180e2b9f0e72ce0',
+  'bumbummen99/shoppingcart' => '4.0.0@f2c763e311b0fc58b2dfdfa2c41c6318a7c884e1',
   'composer/package-versions-deprecated' => '1.11.99.1@7413f0b55a051e89485c5cb9f765fe24bb02a7b6',
   'dnoegel/php-xdg-base-dir' => 'v0.1.1@8f8a6e48c5ecb0f991c2fdcf5f154a47d85f9ffd',
   'doctrine/cache' => '1.10.2@13e3381b25847283a91948d04640543941309727',
@@ -143,7 +144,7 @@ final class Versions
   'sebastian/type' => '2.3.1@81cd61ab7bbf2de744aba0ea61fae32f721df3d2',
   'sebastian/version' => '3.0.2@c6c1022351a901512170118436c764e473f6de8c',
   'theseer/tokenizer' => '1.2.0@75a63c33a8577608444246075ea0af0d052e452a',
-  'laravel/laravel' => 'dev-dev@f265c2ea449fdf7d5d0349bf25a300443d9904e0',
+  'laravel/laravel' => 'dev-master@6d83a6d92c3a9f87d3a2136114e8b6a0beb5f91b',
 );
 
     private function __construct()

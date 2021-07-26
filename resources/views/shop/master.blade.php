@@ -56,7 +56,7 @@
     <section>
         <div class="container">
             <div class="row">
-                @if(!strpos($url, 'shop/checkout') && !strpos($url, 'shop/cart') && !strpos($url, 'shop/login') && !strpos($url, 'contact'))
+                @if(!strpos($url, 'shop/customers/checkout') && !strpos($url, 'shop/customer/carts') && !strpos($url, 'shop/customer/login') && !strpos($url, 'contact'))
                 @include('shop.layouts.sidebar')
                 @endif
                 @yield('content')

@@ -6,6 +6,8 @@
 namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
+use Cart;
+//use Gloudemans\Shoppingcart\Cart;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Brand;
@@ -24,10 +26,7 @@ class HomeController extends Controller
     {
         return view('shop.customer.checkout');
     }
-    public function getCart()
-    {
-        return view('shop.customer.cart');
-    }
+
     public function getBlogList()
     {
         return view('shop.blogs.blog');

@@ -74,7 +74,10 @@ Route::group(['namespace'=>'Shop'], function(){
 
             // Checkout
             Route::get('checkout', 'HomeController@getCheckout');
-            Route::get('cart', 'HomeController@getCart');
+            Route::get('carts', 'CartController@getCart');
+            Route::get('carts/add', 'CartController@addToCart');
+            Route::get('carts/update', 'CartController@updateCart');
+            Route::get('carts/delete/{id}', 'CartController@deleteCart');
         });
 
 	});

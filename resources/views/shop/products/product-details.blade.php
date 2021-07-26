@@ -49,6 +49,7 @@
 		</div>
 		<div class="col-sm-7">
 			<div class="product-information"><!--/product-information-->
+                <p id="addtocart-success" class="alert alert-success" style="display: none; float: right; margin-top: -50px; margin-right: 20px;">Add to cart successfully</p>
 				<img src="images/product-details/new.jpg" class="newarrival" alt="" />
 				<h2>{{$product->name}}</h2>
 				<p>Web ID: 100{{$product->prod_id}}</p>
@@ -56,8 +57,8 @@
 				<span>
 					<span>{{number_format($product->price)}}</span>
 					<label>Quantity:</label>
-					<input type="text" value="1" />
-					<button type="button" class="btn btn-fefault cart">
+					<input id="product_quantity" type="text" value="1" />
+					<button onclick="AddToCart({{$product->prod_id}}, document.getElementById('product_quantity').value)" type="button" class="btn btn-fefault cart">
 						<i class="fa fa-shopping-cart"></i>
 						Add to cart
 					</button>
@@ -352,4 +353,24 @@
 	</div><!--/recommended_items-->
 
 </div>
+<script>
+    function AddToCart(id, qty) {
+        const request =	$.get(
+            "{{asset('shop/customer/carts/add')}}",
+            {
+                product_id: id,
+                quantity: parseInt(qty)
+            });
+        request.done(function(responseText, statusText, xhr){
+            if (statusText == 'error') {
+                alert('Error: ' + xhr.status + ':' + xhr.statusText);
+            } else {
+                document.getElementById('addtocart-success').style.display = 'flex';
+                setTimeout(function () {
+                    document.getElementById('addtocart-success').style.display = 'none';
+                }, 2000);
+            }
+        });
+    }
+</script>
 @endsection

@@ -62,7 +62,7 @@
                             <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                             <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                             <li><a href="{{URL::to('shop/customer/login')}}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a href="{{URL::to('shop/customer/login')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            <li><a href="{{URL::to('shop/customer/carts')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                            @if(Session::has('username_logged_in') || Session::has('account_logged_in'))
                                 <li><a href="{{URL::to('shop/customer/logout')}}"><i class="fa fa-unlock"></i> Logout</a></li>
                             @else
