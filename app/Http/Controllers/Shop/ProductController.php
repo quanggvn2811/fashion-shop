@@ -30,7 +30,7 @@ class ProductController extends Controller
         // ->select('tbl_fs_products.*', 'tbl_fs_productlines.name as category')
         // ->orderBy('tbl_fs_products.prod_id', 'DESC')->paginate(8);
 
-        $data['products'] = Product::where('prodline_id', '=', $id)->where('display', '=', 1)->orderBy('prod_id', 'DESC')->paginate(9);
+        $data['products'] = Product::where('prodline_id', '=', $id)->where('display', '=', 1)->orderBy('prod_id', 'DESC')->paginate(6);
         $data['category'] = Category::find($id)->name;
 
         return view('shop.categories.product-by-category', $data);
@@ -39,7 +39,7 @@ class ProductController extends Controller
     // Fillter products by brand
     public function getProductByBrand($id, $slug)
     {
-        $data['products'] = Product::where('brand_id', '=', $id)->where('display', '=', 1)->orderBy('prod_id', 'DESC')->paginate(9);
+        $data['products'] = Product::where('brand_id', '=', $id)->where('display', '=', 1)->orderBy('prod_id', 'DESC')->paginate(6);
         $data['brand'] = Brand::find($id)->name;
 
         return view('shop.brands.product-by-brand', $data);

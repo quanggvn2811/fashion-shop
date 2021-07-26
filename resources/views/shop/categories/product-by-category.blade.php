@@ -16,7 +16,7 @@
 								$img_path = 'storage/avatars/'.$img_db[0];
 							}
 						?>
-						<img src="{{url($img_path)}}" alt="" />
+						<img style="max-width: 225px; max-height: 200px" src="{{url($img_path)}}" alt="" />
 						<h2>{{number_format($product->price)}} Đ</h2>
 						<p>{{$product->name}}</p>
 						<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
