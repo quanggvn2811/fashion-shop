@@ -55,7 +55,11 @@ Route::group(['namespace'=>'Shop'], function(){
 
 	  	// Filter product by brand
 		Route::get('brands/{brand_id}/{slug}', 'ProductController@getProductByBrand');
-		Route::get('product-details', 'ProductController@getProductDetails');
+
+		// Show product details
+		Route::get('product-details/{id}/{slug}', 'ProductController@getProductDetails');
+
+		// Search products
 		Route::get('/search', 'ProductController@getSearchProduct');
 
 		// Customer

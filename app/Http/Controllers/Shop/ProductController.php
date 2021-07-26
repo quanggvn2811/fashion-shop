@@ -17,9 +17,12 @@ class ProductController extends Controller
         $data['allProducts'] = Product::where('feature', '=', 1)->where('display', '=', 1)->orderBy('prod_id', 'DESC')->paginate(9);
         return view('shop.products.product-list', $data);
     }
-    public function getProductDetails()
+    public function getProductDetails($id, $slug)
     {
-        return view('shop.products.product-details');
+        $product = Product::find($id);
+        $data['product'] = $product;
+        $data['brand_name'] = Brand::find($product->brand_id)->name;
+        return view('shop.products.product-details', $data);
     }
 
     // Fillter products by category

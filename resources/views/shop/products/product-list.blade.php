@@ -32,7 +32,7 @@
 					<div class="product-overlay">
 						<div class="overlay-content">
 							<h2>{{number_format($product->price)}} Đ</h2>
-							<p>{!! $product->name !!}</p>
+                            <a href="{{asset('shop/product-details/' . $product->prod_id . '/' . $product->slug)}}"><p>{!! $product->name !!}</p></a>
 							<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 						</div>
 					</div>
