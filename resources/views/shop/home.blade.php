@@ -26,7 +26,7 @@
                         <div class="overlay-content">
                             <h2>{{number_format($product->price)}} Đ</h2>
                             <a href="{{asset('shop/product-details/' . $product->prod_id . '/' . $product->slug)}}"><p>{!! $product->name !!}</p></a>
-                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                            <button onclick="AddToCart({{$product->prod_id}}, 1)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
                         </div>
                     </div>
                 </div>

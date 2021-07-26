@@ -353,24 +353,4 @@
 	</div><!--/recommended_items-->
 
 </div>
-<script>
-    function AddToCart(id, qty) {
-        const request =	$.get(
-            "{{asset('shop/customer/carts/add')}}",
-            {
-                product_id: id,
-                quantity: parseInt(qty)
-            });
-        request.done(function(responseText, statusText, xhr){
-            if (statusText == 'error') {
-                alert('Error: ' + xhr.status + ':' + xhr.statusText);
-            } else {
-                document.getElementById('addtocart-success').style.display = 'flex';
-                setTimeout(function () {
-                    document.getElementById('addtocart-success').style.display = 'none';
-                }, 2000);
-            }
-        });
-    }
-</script>
 @endsection

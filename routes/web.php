@@ -73,11 +73,12 @@ Route::group(['namespace'=>'Shop'], function(){
             Route::get('logout', 'CustomerController@getLogOut');
 
             // Checkout
-            Route::get('checkout', 'HomeController@getCheckout');
+            Route::get('checkout', 'CartController@getCheckout');
             Route::get('carts', 'CartController@getCart');
             Route::get('carts/add', 'CartController@addToCart');
             Route::get('carts/update', 'CartController@updateCart');
             Route::get('carts/delete/{id}', 'CartController@deleteCart');
+            Route::post('payments', 'CartController@payments');
         });
 
 	});

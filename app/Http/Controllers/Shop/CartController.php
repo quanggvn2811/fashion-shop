@@ -9,6 +9,9 @@ use App\Models\Category;
 use DB;
 use Illuminate\Support\Facades\Cookie;
 use Cart;
+use Session;
+use Mail;
+use App\Models\Customer;
 
 class CartController extends Controller
 {
@@ -59,4 +62,62 @@ class CartController extends Controller
              }
          }
      }
+
+    public function getCheckout()
+    {
+        if (Session::has('account_logged_in')) {
+            return redirect('shop/customer/carts');
+        } else {
+            return view('shop/customer/login');
+        }
+    }
+
+    // payment
+    public function payments(Request $request) {
+        $username = test_input($request->pm_username);
+        $email = test_input($request->pm_email);
+        $address = test_input($request->pm_address);
+        $note = test_input($request->pm_note);
+        $password = md5($request->pm_password);
+
+        // Auth
+        $result = Customer::where(function($query) use ($username, $email){
+            $query->where('username', '=', $username)->orWhere('email', '=', $email);
+        })->where('password', '=', $password)->first();
+
+        // Using session
+        if ($result) {
+
+            // Send email to customer
+            $data['username'] = $username;
+            $data['email'] = $email;
+            $data['address'] = $address;
+            $data['note'] = $note;
+            $data['carts'] = Cart::content();
+            $data['total'] = Cart::total();
+
+            if (empty(Cart::content()) || Cart::total() <= 0) {
+                return back()->withInput()->with('error', 'No product in your cart');
+            }
+
+            //$pdf = PDF::loadView('shop.customers.sendemail', $data);
+
+            Mail::send('shop.customer.send-mail', $data, function($message) use ($email){
+                $message->from('service.homeshoppe@gmail.com', 'FASHION SHOP');
+
+                $message->to($email, $email);
+
+                $message->subject('Xác nhận mua hàng từ Fashion shop');
+
+                //   $message->attachData($pdf->output(), "order.pdf");
+            });
+
+
+            // Delete item in cart
+            Cart::destroy();
+            return back()->withInput()->with('success', 'Payment successfully, check your email');
+        } else {
+            return back()->withInput()->with('error', 'Invalid account or password');
+        }
+    }
 }
