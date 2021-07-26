@@ -5,6 +5,9 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			List of products
+            <button style="float: right; margin-top: 12px" class="btn btn-primary">
+                <a style="color: #FFF" href="{{URL::to('/admin/products/create')}}">Add Product</a>
+            </button>
 		</div>
 		@include('success.note')
 		<div class="row w3-res-tb">
@@ -15,7 +18,7 @@
 					<option value="2">Bulk edit</option>
 					<option value="3">Export</option>
 				</select>
-				<button class="btn btn-sm btn-default">Apply</button>                
+				<button class="btn btn-sm btn-default">Apply</button>
 			</div>
 			<div class="col-sm-4">
 			</div>
@@ -55,11 +58,11 @@
 								$img_path = 'server-side/images/img_not_found.png';
 								if (isset($img_db[0])) {
 									$img_path = 'storage/avatars/'.$img_db[0];
-								}	
+								}
 						 ?>
 						<td>
 							<a href="{{URL::to('admin/products/'.$prod->prod_id)}}"><img style="max-width: 200px; max-height: 200px;" src="{{url($img_path)}}" alt=""></a>
-						</td>	
+						</td>
 						<td><span class="text-ellipsis">{{number_format($prod->price)}}</span></td>
 						<td><span class="text-ellipsis">{{number_format($prod->quantity)}}</span></td>
 						<td>
@@ -89,7 +92,7 @@
 				<div class="col-sm-5 text-center">
 					<small class="text-muted inline m-t-sm m-b-sm">showing {{$productlist->currentPage()*$productlist->perPage()-$productlist->perPage() + 1}}-{{$productlist->currentPage()*$productlist->perPage()}} of {{$productlist->total()}} items</small>
 				</div>
-				<div class="col-sm-7 text-right text-center-xs">                
+				<div class="col-sm-7 text-right text-center-xs">
 					<ul class="pagination pagination-sm m-t-none m-b-none">
 						<li><a @if($productlist->currentPage() == 1) href="{{$productlist->url($productlist->lastPage())}}" @else href="{{$productlist->previousPageUrl()}}" @endif><i class="fa fa-chevron-left"></i></a></li>
 						@for($i=1; $i<=$productlist->lastPage(); $i++)

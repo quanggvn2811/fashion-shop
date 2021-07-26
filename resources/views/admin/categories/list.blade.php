@@ -5,6 +5,7 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			list of categories
+            <button style="float: right; margin-top: 12px" class="btn btn-primary"><a style="color: #FFF" href="{{URL::to('/admin/category/create')}}">Add Category</a></button>
 		</div>
 		<div class="table-responsive">
 			@include('errors.note')
@@ -53,7 +54,7 @@
 				<div class="col-sm-5 text-center">
 					<small class="text-muted inline m-t-sm m-b-sm">showing {{$catelist->currentPage()*$catelist->perPage()-$catelist->perPage() + 1}}-{{$catelist->currentPage()*$catelist->perPage()}} of {{$catelist->total()}} items</small>
 				</div>
-				<div class="col-sm-7 text-right text-center-xs">                
+				<div class="col-sm-7 text-right text-center-xs">
 					<ul class="pagination pagination-sm m-t-none m-b-none">
 						<li><a @if($catelist->currentPage() == 1) href="{{$catelist->url($catelist->lastPage())}}" @else href="{{$catelist->previousPageUrl()}}" @endif><i class="fa fa-chevron-left"></i></a></li>
 						@for($i=1; $i<=$catelist->lastPage(); $i++)
@@ -65,7 +66,7 @@
 			</div>
 		</footer>
 	</div>
-</div>			
+</div>
 <script>
 	function changeDisplayCate(cate_id, display_st){
 	const request =	$.get(

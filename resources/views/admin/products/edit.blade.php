@@ -28,7 +28,7 @@
 						<div class="form-group">
 							<label for="exampleInputFile">Images:</label>
 							<input id="img" type="file" name="img[]" class="form-control hidden" onchange="changeImg(this)" multiple>
-							<?php 
+							<?php
 								$img_db = json_decode($product->images);
 								$img_path = 'server-side/images/new_seo-10-512.png';
 								if (isset($img_db[0])) {
@@ -40,7 +40,7 @@
 						</div>
 						<div class="form-group">
 							<label for="content">Content</label>
-							<textarea class="form-control" name="content" rows="10">{!!$product->content!!}</textarea>
+							<textarea class="form-control" name="fs_content" rows="10">{!!$product->content!!}</textarea>
 						</div>
 						<div class="form-group">
 							<label for="desc">Description</label>

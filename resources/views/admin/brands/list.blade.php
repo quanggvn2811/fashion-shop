@@ -5,6 +5,7 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			list of brands
+            <button style="float: right; margin-top: 12px" class="btn btn-primary"><a style="color: #FFF" href="{{URL::to('/admin/brands/create')}}">Add Brand</a></button>
 		</div>
 		<div class="table-responsive">
 			@include('success.note')
@@ -54,7 +55,7 @@
 				<div class="col-sm-5 text-center">
 					<small class="text-muted inline m-t-sm m-b-sm">showing {{$brandlist->currentPage()*$brandlist->perPage()-$brandlist->perPage() + 1}}-{{$brandlist->currentPage()*$brandlist->perPage()}} of {{$brandlist->total()}} items</small>
 				</div>
-				<div class="col-sm-7 text-right text-center-xs">                
+				<div class="col-sm-7 text-right text-center-xs">
 					<ul class="pagination pagination-sm m-t-none m-b-none">
 						<li><a @if($brandlist->currentPage() == 1) href="{{$brandlist->url($brandlist->lastPage())}}" @else href="{{$brandlist->previousPageUrl()}}" @endif><i class="fa fa-chevron-left"></i></a></li>
 						@for($i=1; $i<=$brandlist->lastPage(); $i++)
@@ -66,7 +67,7 @@
 			</div>
 		</footer>
 	</div>
-</div>			
+</div>
 <script>
 	function changeDisplayBrand(brand_id, display_st){
 	const request =	$.get(

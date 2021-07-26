@@ -18,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data['productlist'] = Product::orderBy('prod_id', 'DESC')->paginate(8);
+        $data['productlist'] = Product::orderBy('prod_id', 'DESC')->paginate(5);
         return view('admin.products.list', $data);
     }
 
@@ -47,7 +47,7 @@ class ProductController extends Controller
         $product->slug = str_slug(test_input($request->name));
         $product->price = test_input($request->price);
         $product->quantity = test_input($request->quantity);
-        $product->content = test_input($request->content);
+        $product->content = test_input($request->fs_content);
         $product->description = test_input($request->desc);
         $product->prodline_id = $request->category;
         $product->brand_id = $request->brand;
@@ -111,7 +111,7 @@ class ProductController extends Controller
         $product->slug = str_slug(test_input($request->name));
         $product->price = test_input($request->price);
         $product->quantity = test_input($request->quantity);
-        $product->content = test_input($request->content);
+        $product->content = test_input($request->fs_content);
         $product->description = test_input($request->desc);
         $product->prodline_id = $request->category;
         $product->brand_id = $request->brand;
@@ -134,7 +134,7 @@ class ProductController extends Controller
     }
     $product->save();
     return redirect()->intended('admin/products/'.$product->prod_id)->with('success', 'Edit product successfully');
-        
+
     }
 
     /**
