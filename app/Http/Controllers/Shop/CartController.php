@@ -17,9 +17,13 @@ class CartController extends Controller
 {
     public function getCart()
     {
-        $data['cart'] = Cart::content();
-        $data['totalCart'] = Cart::total();
-        return view('shop.customer.cart', $data);
+        if (Session::has('account_logged_in')) {
+            $data['cart'] = Cart::content();
+            $data['totalCart'] = Cart::total();
+            return view('shop.customer.cart', $data);
+        } else {
+            return redirect()->intended('shop/customer/login');
+        }
     }
 
     // Add to cart
